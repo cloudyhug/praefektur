@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Präfektur</string>
+    <string name="play">Jouer</string>
+    <string name="app_description">Le jeu des préfectures</string>
+    <string name="app_info">App info</string>
+    <string name="app_info_content">Auteur : Enzo Crance\nIcône : Freepik</string>
+    <string name="ok">Merci !</string>
+    <string name="county_number">Numéro de département</string>
+    <string name="county_name">Nom du département</string>
+    <string name="prefecture_city">Préfecture</string>
+    <string name="find_the_prefectures">Trouvez les préfectures !</string>
+    <string name="app_icon_description">Mairie</string>
+    <string name="app_info_title">À propos</string>
+</resources>
