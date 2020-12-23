@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
     // a click on the button launches the game
     playButton.setOnClickListener { _ ->
       val intent = Intent(this, GameActivity::class.java)
-      startActivity(intent)
+      startActivityForResult(intent, 0)
     }
   }
 
@@ -26,6 +26,12 @@ class MainActivity : AppCompatActivity() {
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
     return when (item.itemId) {
+      // a click on the learn icon displays all the prefectures
+      R.id.learn -> {
+        val intent = Intent(this, CountyDataActivity::class.java)
+        startActivity(intent)
+        true
+      }
       // a click on the info icon shows a dialog
       R.id.appInfo -> {
         AppInfoDialogFragment().show(supportFragmentManager, "appinfo")

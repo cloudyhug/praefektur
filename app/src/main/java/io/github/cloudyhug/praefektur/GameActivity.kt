@@ -11,6 +11,7 @@ class GameActivity : AppCompatActivity() {
   // 1 - must display the answer
   private val QUESTION_STATE: Int = 0
   var state: Int = 0
+  var data: MutableList<CountyDatum> = GameData.frenchCounties.toMutableList()
 
   var currentDatum: CountyDatum? = null
 
@@ -33,25 +34,32 @@ class GameActivity : AppCompatActivity() {
 
   fun play() {
     if (state == QUESTION_STATE) {
-      GameData.frenchCounties.let { data ->
-        var newDatum: CountyDatum? = null
+      // if no more counties the game is over
+      if (data.size == 0) {
+        finish()
+        return
+      }
+
+      var newDatum: CountyDatum?
+
+      if (data.size == 1) {
+        newDatum = data[0]
+      } else {
         // not twice the same county
         do {
           newDatum = data[Random.nextInt(data.size)]
         } while (newDatum == currentDatum)
-        currentDatum = newDatum
       }
+
+      // delete the old datum from the list and replace it
+      data.remove(currentDatum)
+      currentDatum = newDatum
+
       // erase the previous answers
       countyNameDynamicText.text = ""
       prefectureCityDynamicText.text = ""
       // display the county number correctly
-      countyNumberDynamicText.text =
-        when (currentDatum!!.number) {
-          201 -> "2A"
-          202 -> "2B"
-          else ->
-            (if (currentDatum!!.number < 10) "0" else "") + currentDatum!!.number.toString()
-        }
+      countyNumberDynamicText.text = GameData.frenchCountyToString(currentDatum!!.number)
     } else {
       // answer mode, just print them on the screen
       countyNameDynamicText.text = currentDatum!!.county

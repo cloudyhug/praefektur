@@ -104,4 +104,13 @@ object GameData {
     CountyDatum(974, "La Réunion", "Saint-Denis"),
     CountyDatum(976, "Mayotte", "Mamoudzou")
   )
+
+  fun frenchCountyToString(n: Int): String {
+    return when (n) {
+      201 -> "2A"
+      202 -> "2B"
+      else ->
+        (if (n < 10) "0" else "") + n.toString()
+    }
+  }
 }
